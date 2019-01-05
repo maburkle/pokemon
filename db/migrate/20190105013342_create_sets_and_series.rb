@@ -7,6 +7,7 @@ class CreateSetsAndSeries < ActiveRecord::Migration[5.1]
     	t.string   :symbol_image_url
     	t.string   :logo_image_url
     	t.integer  :total_cards
+        t.string   :set_api_name
     end
 
     create_table :series do |t|

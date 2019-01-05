@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20190105013342) do
     t.string "symbol_image_url"
     t.string "logo_image_url"
     t.integer "total_cards"
+    t.string "set_api_name"
   end
 
   create_table "cards", force: :cascade do |t|
