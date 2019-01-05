@@ -1,0 +1,17 @@
+<div class="row">
+	<% @cards.each_slice(4) do |slice| %>
+		<div class="row">
+			<% slice.each do |card| %>
+				<div class="col-xs-12 col-sm-3">
+					<h2><%= card.name %></h2>
+					<div><%= image_tag(image_url(card.image_url),  style:"height: auto; max-width: 100%;") %></div>
+					<div><%= card.ability if card.ability %></div>
+					<% card.attacks.each do |attack| %>
+						<div><%= attack.cost %> | <%= attack.name %> <%= attack.damage %></div>
+						<div><%= attack.text %></div>
+					<% end %>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
+</div>

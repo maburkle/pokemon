@@ -27,7 +27,7 @@ class CreateCards < ActiveRecord::Migration[5.1]
     	t.string :damage
     	t.integer :card_id
     end
-    create_table :ability do |t|
+    create_table :abilities do |t|
     	t.string :name
       t.text   :text
       t.text   :ability_type

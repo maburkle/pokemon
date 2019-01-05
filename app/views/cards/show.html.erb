@@ -1,0 +1,13 @@
+<div class="row">
+	<h2><%= card.name %> <%= card.set.name %></h2>
+	<div class="col-xs-12 col-sm-6">
+		<%= image_tag(image_url(card.image_url),  style:"height: auto; max-width: 100%;") %>
+	</div>
+	<div class="col-xs-12 col-sm-6">
+		<div><%= card.ability if card.ability %></div>
+		<% card.attacks.each do |attack| %>
+			<div><%= attack.cost %> | <%= attack.name %> <%= attack.damage %></div>
+			<div><%= attack.text %></div>
+		<% end %>
+	</div>
+</div>

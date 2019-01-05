@@ -7,37 +7,59 @@ class ImportService
 		cards = Pokemon::Card.where(nationalPokedexNumber: card_number)
 		cards.each do |card|
 			unless Card.find_by(api_id: card.id)
-				evolve_from_id = card.evolvesFrom ? Card.where(name: card.evolvesFrom).first.id : 0
-				evolve_to_id   = card.evolvesTo ? Card.where(name: card.evolvesTo).first.id || 200 : 0
+				card_weakness = ""
+				card_resistance = ""
+				if card.weaknesses
+					card.weaknesses.each do |weakness|
+						card_weakness += (" " + weakness.type + " " + weakness.value)
+					end
+				end
+				if card.resistances
+					card.resistances.each do |resistance|
+						card_resistance += (" " + resistance.type + " " + resistance.value)
+					end
+				end
 				@card = Card.create(
 					name: 				card.name,
-      		image_url: 		card.imageUrl,
-      		hd_image_url: card.imageUrlHiRes,
+      		image_url: 		card.image_url,
+      		hd_image_url: card.image_url_hi_res,
       		hp: 					card.hp,
       		energy_types: card.types,
       		card_number: 	card.number,
       		sub_type: 		card.subtype,
       		super_type: 	card.supertype,
     			flavor_text:  card.text,
-    			retreat_cost: card.retreatCost,
+    			retreat_cost: card.retreat_cost,
     			artist:       card.artist,
-    			set_id:       Set.find_by(name: card.set),
-    			rarity:       card.ratity,
-    		#	weakness:
-    	  # resistance:
+    			set_id:       CardSet.find_by(name: card.set).id,
+    			rarity:       card.rarity,
+    			weakness:     card_weakness,
+    	  	resistance:   card_resistance,
     			api_id:       card.id
 				)
 
 				card.attacks.each do |attack|
-
+					attack_cost = ""
+					attack.cost.each do |cost|
+						attack_cost += " " + cost
+					end
+					@attack = ::Attack.create(
+						name:    attack.name,
+    				text:    attack.text,
+    				damage:  attack.damage,
+    				cost:    attack_cost,
+    				card_id: @card.id
+					)
 				end
 
-				Ability.create(
-					name: card.ability.name,
-					text: card.ability.text,
-					ability_type: card.ability.type,
-					card_id: @card.id
-				)
+				if card.ability
+					::Ability.create(
+						name: card.ability.name,
+						text: card.ability.text,
+						ability_type: card.ability.type,
+						card_id: @card.id
+					)
+				end
 			end
 		end
 	end
