@@ -1,0 +1,12 @@
+<div class="row">
+	<% @sets.each_slice(4) do |slice| %>
+		<div class="row">
+			<% slice.each do |series| %>
+				<div class="col-xs-12 col-sm-3">
+					<h2><%= series.name %></h2>
+					<div><%= image_tag(image_url(series.logo_image_url),  style:"height: auto; max-width: 100%;") %></div>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
+</div>
