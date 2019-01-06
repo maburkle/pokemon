@@ -70,11 +70,17 @@ class ImportService
 		sets = Pokemon::Set.all
 		sets = sets.sort_by { |obj| Date.strptime(obj.release_date, "%m/%d/%Y") }
 		sets.each do |set|
-			if set.name == set.series
+			if set.code == ("smp" || "bwp" || "xyp")
+				binding.pry
+				series = ::Series.create(name: set.name, logo_image_url: set.logo_url)
+			elsif set.name == set.series
+				binding.pry
 				series = ::Series.create(name: set.name, logo_image_url: set.logo_url)
 			else
-				series = ::Series.find_by(name: set.series)
-				series = ::Series.create(name: set.series, logo_image_url: set.logo_url) unless series
+				series = ::Series.where(name: set.series).last
+				unless series
+					series = ::Series.create(name: set.series, logo_image_url: set.logo_url)
+				end
 			end
 			@set = ::CardSet.create(
 				name: 		  	 		set.name,

@@ -1,6 +1,6 @@
 class CardSetsController < ApplicationController
 
 	def index
-		@sets = CardSet.all
+		@series = Series.all
 	end
 end
