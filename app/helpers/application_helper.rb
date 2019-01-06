@@ -34,27 +34,4 @@ module ApplicationHelper
 		end
 		return text_with_icons
 	end
-
-	def weigh_rarity(rarity)
-		case rarity
-		when "Promo"
-			"<p class='hidden'>0<p> #{rarity}"
-		when "Common"
-  		"<p class='hidden'>1<p> #{rarity}"
-		when "Uncommon"
-  		"<p class='hidden'>2<p> #{rarity}"
-  	when "Rare"
-  		"<p class='hidden'>3<p> #{rarity}"
-  	when "Rare Holo"
-  		"<p class='hidden'>4<p> #{rarity}"
-  	when "Rare Holo GX"
-  		"<p class='hidden'>5<p> #{rarity}"
-  	when "Rare Ultra"
-  		"<p class='hidden'>6<p> #{rarity}"
-  	when "Rare Secret"
-  		"<p class='hidden'>7<p> #{rarity}"
-		else
-  		"<p class='hidden'>8<p> #{rarity}"
-		end
-	end
 end

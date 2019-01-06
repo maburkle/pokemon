@@ -33,7 +33,7 @@
       <td>
         <%= convert_retreat_cost(card.retreat_cost) %>
       </td>
-      <td><%= weigh_rarity(card.rarity).html_safe %></td>
+      <td><%= card.rarity_weight.html_safe %></td>
     </tr>
    <% end %>
  </tbody>
