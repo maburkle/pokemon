@@ -495,4 +495,9 @@ var forEach = function(object, block, context) {
   }
 };
   }());
+
+$('#myModal').on('show.bs.modal', function (e) {
+  $('#myModal .modal-title')[0].innerHTML = e.relatedTarget.dataset.title;
+  $('#myModal .modal-body')[0].innerHTML = e.relatedTarget.dataset.image;
+})
 });

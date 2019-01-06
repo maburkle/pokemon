@@ -16,7 +16,7 @@
 
  <tbody>
    <% @cards.each do |card| %>
-     <tr>
+     <tr data-toggle="modal" data-target="#myModal" data-title='<%= card.name %>' data-image='<%= image_tag(card.hd_image_url) %>'>
       <td><%= card.card_number %></td>
       <td>
       	<p class="hidden"><%= card.energy_types %></p>
@@ -37,3 +37,16 @@
     </tr>
    <% end %>
  </tbody>
+</table>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="width: 375px">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 class="modal-title" id="myModalLabel"></h4>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
