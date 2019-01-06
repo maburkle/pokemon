@@ -3,14 +3,10 @@ class ImportService
 
 	#Pass a Pokemon's National Pokedex number to import all cards, attacks, and abilities, associated with that Pokemon
 
-	def self.import_card(card_number)
+	def self.import_card(card_number, card_resistance="", card_weakness="", retreat_cost=0)
 		cards = Pokemon::Card.where(nationalPokedexNumber: card_number)
 		cards.each do |card|
-			binding.pry
 			unless Card.find_by(api_id: card.id)
-				card_weakness = ""
-				card_resistance = ""
-				card_retreat_cost = ""
 				if card.weaknesses
 					card.weaknesses.each do |weakness|
 						card_weakness += (" " + weakness.type + " " + weakness.value)
@@ -21,11 +17,7 @@ class ImportService
 						card_resistance += (" " + resistance.type + " " + resistance.value)
 					end
 				end
-				if card.retreat_cost
-					card.retreat_cost.each do |retreat_cost|
-						card_retreat_cost += retreat_cost + " "
-					end
-				end
+				retreat_cost = card.retreat_cost.count if card.retreat_cost
 				@card = Card.create(
 					name: 				card.name,
       		image_url: 		card.image_url,
@@ -36,7 +28,7 @@ class ImportService
       		sub_type: 		card.subtype,
       		super_type: 	card.supertype,
     			flavor_text:  card.text,
-    			retreat_cost: card_retreat_cost,
+    			retreat_cost: retreat_cost,
     			artist:       card.artist,
     			set_id:       CardSet.find_by(name: card.set).id,
     			rarity:       card.rarity,
@@ -45,28 +37,9 @@ class ImportService
     			api_id:       card.id
 				)
 
-				card.attacks.each do |attack|
-					attack_cost = ""
-					attack.cost.each do |cost|
-						attack_cost += " " + cost
-					end
-					@attack = ::Attack.create(
-						name:    attack.name,
-    				text:    attack.text,
-    				damage:  attack.damage,
-    				cost:    attack_cost,
-    				card_id: @card.id
-					)
-				end
+				self.import_attacks(card) if card.attacks
+				self.import_ability(card) if card.ability
 
-				if card.ability
-					::Ability.create(
-						name: card.ability.name,
-						text: card.ability.text,
-						ability_type: card.ability.type,
-						card_id: @card.id
-					)
-				end
 			end
 		end
 	end
@@ -99,13 +72,10 @@ class ImportService
 		end
 	end
 
-	def self.import_card_by_set(set_name)
+	def self.import_card_by_set(set_name, card_resistance="", card_weakness="", retreat_cost=0)
 		cards = Pokemon::Card.where(set: set_name.downcase)
 		cards.each do |card|
 			unless Card.find_by(api_id: card.id)
-				card_weakness = ""
-				card_resistance = ""
-				retreat_cost = 0
 				if card.weaknesses
 					card.weaknesses.each do |weakness|
 						card_weakness += (" " + weakness.type + " " + weakness.value)
@@ -116,9 +86,7 @@ class ImportService
 						card_resistance += (" " + resistance.type + " " + resistance.value)
 					end
 				end
-				if card.retreat_cost
-					retreat_cost = card.retreat_cost.count
-				end
+				retreat_cost = card.retreat_cost.count if card.retreat_cost
 				@card = Card.create(
 					name: 				card.name,
       		image_url: 		card.image_url,
@@ -138,31 +106,35 @@ class ImportService
     			api_id:       card.id
 				)
 
-				if card.attacks
-					card.attacks.each do |attack|
-						attack_cost = ""
-						attack.cost.each do |cost|
-							attack_cost += " " + cost
-						end
-						@attack = ::Attack.create(
-							name:    attack.name,
-	    				text:    attack.text,
-	    				damage:  attack.damage,
-	    				cost:    attack_cost,
-	    				card_id: @card.id
-						)
-					end
-				end
+				self.import_attacks(card) if card.attacks
+				self.import_ability(card) if card.ability
 
-				if card.ability
-					::Ability.create(
-						name: card.ability.name,
-						text: card.ability.text,
-						ability_type: card.ability.type,
-						card_id: @card.id
-					)
-				end
 			end
 		end
+	end
+
+	def import_attacks(card)
+		card.attacks.each do |attack|
+			attack_cost = ""
+			attack.cost.each do |cost|
+				attack_cost += " " + cost
+			end
+			@attack = ::Attack.create(
+				name:    attack.name,
+				text:    attack.text,
+				damage:  attack.damage,
+				cost:    attack_cost,
+				card_id: @card.id
+			)
+		end
+	end
+
+	def import_ability(card)
+		::Ability.create(
+				name: card.ability.name,
+				text: card.ability.text,
+				ability_type: card.ability.type,
+				card_id: @card.id
+			)
 	end
 end
