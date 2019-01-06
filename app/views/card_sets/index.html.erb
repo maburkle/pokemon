@@ -2,14 +2,26 @@
 	<% @series.each do |series| %>
 	<div class="col-xs-12">
 		<a data-toggle="collapse" data-parent="#accordion" href=<%= "#collapse#{series.id}" %>>
-    	<%= image_tag(image_url(series.logo_image_url),  style:"height: 150px; max-width: 250px;") %> <%=  series.name %>
+    	<%= image_tag(image_url(series.logo_image_url),  class:"img-responsive") %> <%=  series.name %>
   	</a>
 			<div class="row panel-collapse collapse" id=<%= "collapse#{series.id}" %>>
 				<% series.card_sets.each do |card_set| %>
-					<div class="col-xs-12 col-sm-3">
-						<h2><%= card_set.name %></h2>
-						<div><%= image_tag(image_url(card_set.logo_image_url),  style:"height: 150px; max-width: 250px;") %></div>
-					</div>
+					<%= link_to(card_set) do %>
+						<div class="col-xs-12 col-sm-3">
+							<h2><%= card_set.name %></h2>
+							<div class="row"></div>
+								<div class="col-xs-12">
+									<%= image_tag(image_url(card_set.logo_image_url),  class:"img-responsive") %>
+								</div>
+								<div class="col-xs-6">
+									<%= image_tag(image_url(card_set.symbol_image_url),  class:"img-responsive") %>
+								</div>
+								<div class="col-xs-6">
+									<%= card_set.release_date %><br>
+									<%= card_set.total_cards %>
+								</div>
+						</div>
+					<% end %>
 				<% end %>
 			</div>
 		</div>

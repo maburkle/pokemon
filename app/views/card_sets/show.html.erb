@@ -1,0 +1,39 @@
+<table class=" table table-striped sortable">
+  <thead>
+    <tr>
+      <th>Card Number</th>
+      <th>Energy Type</th>
+      <th>Name</th>
+      <th>Card Type</th>
+      <th>Card Sub-type</th>
+      <th>HP</th>
+      <th>Weakness Cost</th>
+      <th>Resistance Cost</th>
+      <th>Retreat Cost</th>
+      <th>Rarity</th>
+    </tr>
+  </thead>
+
+ <tbody>
+   <% @cards.each do |card| %>
+     <tr>
+      <td><%= card.card_number %></td>
+      <td>
+      	<p class="hidden"><%= card.energy_types %></p>
+      	<% if card.energy_types %>
+      		<%= to_icon(card.energy_types).html_safe %>
+      	<% end %>
+      </td>
+      <td><%= card.name %></td>
+      <td><%= card.super_type %></td>
+      <td><%= card.sub_type %></td>
+      <td><%= card.hp %></td>
+      <td><%= sub_icons_with_text(card.weakness) %></td>
+      <td><%= sub_icons_with_text(card.resistance) %></td>
+      <td>
+        <%= convert_retreat_cost(card.retreat_cost) %>
+      </td>
+      <td><%= weigh_rarity(card.rarity).html_safe %></td>
+    </tr>
+   <% end %>
+ </tbody>
