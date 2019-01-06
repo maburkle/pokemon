@@ -4,8 +4,8 @@ class CardsController < ApplicationController
 		@cards = Card.all
 	end
 
-	def new
-
+	def show
+		@card = Card.find(params[:id])
 	end
 
 	def create
