@@ -1,45 +1,76 @@
 <div class="row">
-	<div class="col-xs-4 col-xs-offset-4 card_set_image_holder">
-		<%= image_tag(image_url(@card.card_set.logo_image_url))%>
-	</div>
-</div>
-<div class="row">
-	<div class="col-xs-12 col-sm-6 card_image_holder">
+	<div class="col-sm-6 card_image_holder">
 		<%= image_tag(image_url(@card.hd_image_url)) %>
 	</div>
-	<div class="col-xs-12 col-sm-6">
-		<div class="row card_title_holder">
-			<div class="col-xs-9">
-				<h1><%= @card.name %> <%= to_icon(@card.energy_types).html_safe %></h3>
-			</div>
-			<div class="col-xs-3 card_number_holder">
-				<%= @card.card_number %> / <%= @card.card_set.total_cards %>
-			</div>
-		</div>
-		<% if @card.ability %>
-			<div class="row">
-				<div class="col-xs-12 attack_title">
-					<h2><%= @card.ability.name %></h2>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12 attack_content_holder">
-					<%= @card.ability.text %>
-				</div>
-			</div>
-		<% end %>
-		<% if @card.attacks %>
-			<% @card.attacks.each do |attack| %>
-				<div class="row">
-					<div class="col-xs-12 attack_title">
-						<h2><%= attack.name %></h2>
+	<div class="col-sm-6">
+		<div class="row">
+			<div class="col-9">
+				<div class="row card_title_holder">
+					<div class="col-10 card_title">
+						<h2><%= @card.name %></h2>
+					</div>
+					<div class="col-2 card_title_cost">
+						 <%= to_icon(@card.energy_types).html_safe %>
 					</div>
 				</div>
-				<div class="row attack_content_holder">
-					<div><%= type_to_icon(attack.cost).html_safe %> <%= attack.damage %></div>
-					<div><%= attack.text %></div>
+
+				<% if @card.ability %>
+					<div class="row">
+						<div class="col attack_title">
+							<h2><%= @card.ability.name %></h2>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col attack_content_holder">
+							<%= @card.ability.text %>
+						</div>
+					</div>
+				<% end %>
+
+				<% if @card.attacks %>
+					<% @card.attacks.each do |attack| %>
+						<div class="row attack_title_holder">
+							<div class="col attack_title">
+								<h2><%= attack.name %></h2>
+							</div>
+						</div>
+						<div class="row attack_content_holder">
+							<div class="col-6">
+								<div class="row">
+									<div class="col-12 card_header">Cost</div>
+									<div class="col-12 cost_holder"><%= type_to_icon(attack.cost).html_safe %></div>
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="row">
+									<div class="col-12 card_header">Damage</div>
+									<div class="col-12 cost_holder"><%= attack.damage %></div>
+								</div>
+							</div>
+							<div class="col-12 attack_text"><%= attack.text %></div>
+						</div>
+					<% end %>
+				<% end %>
+
+			</div>
+			<div class="col-2 offset-sm-1 set_icon">
+				<div class="row">
+					<div class="col-12 card_header">Set</div>
+					<div class="col-12"><%= image_tag(image_url(@card.card_set.symbol_image_url))%></div>
 				</div>
-			<% end %>
-		<% end %>
+				<div class="row">
+					<div class="col-12 card_header">HP</div>
+					<div class="col-12 card_data"><%= @card.hp %></div>
+				</div>
+				<div class="row">
+					<div class="col-12 card_header">Weak</div>
+					<div class="col-12 card_data with_icons"><%= sub_icons_with_text(@card.weakness) %></div>
+				</div>
+				<div class="row">
+					<div class="col-12 card_header">Resist</div>
+					<div class="col-12 card_data with_icons"><%= sub_icons_with_text(@card.resistance) %></div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>

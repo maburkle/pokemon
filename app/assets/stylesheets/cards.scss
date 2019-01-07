@@ -6,38 +6,92 @@
 }
 
 .card_title_holder {
-	background-color: $secondary;
-	color: $white;
 	border-radius: 10px;
-	h1 {
+  background-color: $secondary;
+  margin-top: 5px;
+	text-align: center;
+	.card_title {
 		margin-top: 5px;
+		color: $white;
+	}
+	h2 {
 		margin-bottom: 5px;
+	}
+	.card_title_cost {
 		img {
 			height: 25px;
 			width: 25px;
+			position: absolute;
+    	top: 0;
+    	bottom: 0;
+    	margin: auto;
 		}
 	}
 }
 
-.card_number_holder {
-	
+.set_icon {
+	margin-top: 5px;
+	border-radius: 10px;
+	background-color: $primary;
+	color: $white;
+	img {
+		height: 25px;
+		width: 25px;
+		display:block;
+  	margin:auto;
+	}
+}
+
+.card_data {
+	text-align: center;
+	&.with_icons {
+		display: inline-flex;
+	}
+}
+
+.card_header {
+	text-decoration: underline;
+	text-align: center;
+	font-weight: bold;
+	font-size: 16px;
+	margin-top: 10px;
+}
+
+.attack_title_holder {
+	border-radius: 10px;
+  background-color: $primary;
+  margin-top: 10px;
+	text-align: center;
 }
 
 .attack_title {
-	margin-top: 5px;
+	margin-top: 0px;
 	margin-bottom: 0;
 	border-radius: 10px;
 	text-align: center;
 	background-color: $primary;
 	color: $white;
-	h1 {
+	h2 {
 		margin: 0;
 	}
 }
 
+.attack_text {
+	padding-top: 10px;
+	font-size: 14px;
+}
+
 .attack_content_holder {
 	background-color: $grey;
-	padding-top: 20px;
 	padding-bottom: 20px;
 	border-radius: 10px;
+}
+
+.cost_holder {
+	text-align: center;
+	img {
+		display: inline-block;
+		height: 25px;
+		width: 25px;
+	}
 }
