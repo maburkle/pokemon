@@ -1,0 +1,43 @@
+.card_image_holder img {
+	height: auto;
+	width: 75%;
+	display: block;
+	margin: auto;
+}
+
+.card_title_holder {
+	background-color: $secondary;
+	color: $white;
+	border-radius: 10px;
+	h1 {
+		margin-top: 5px;
+		margin-bottom: 5px;
+		img {
+			height: 25px;
+			width: 25px;
+		}
+	}
+}
+
+.card_number_holder {
+	
+}
+
+.attack_title {
+	margin-top: 5px;
+	margin-bottom: 0;
+	border-radius: 10px;
+	text-align: center;
+	background-color: $primary;
+	color: $white;
+	h1 {
+		margin: 0;
+	}
+}
+
+.attack_content_holder {
+	background-color: $grey;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border-radius: 10px;
+}
