@@ -4,4 +4,8 @@ class SeriesController < ApplicationController
 		@series = Series.all
 	end
 
+	def show
+		@series = Series.find(params[:id])
+	end
+
 end

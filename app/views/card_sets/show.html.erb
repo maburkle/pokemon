@@ -16,7 +16,7 @@
 
  <tbody>
    <% @cards.each do |card| %>
-     <tr data-toggle="modal" data-target="#myModal" data-title='<%= card.name %>' data-image='<%= image_tag(card.hd_image_url) %>'>
+     <tr data-toggle="modal" data-target="#myModal" data-title='<%= card.name %>' data-image='<%= link_to(card) do %><%= image_tag(card.hd_image_url) %><% end %>'>
       <td><%= card.card_number %></td>
       <td>
       	<p class="hidden"><%= card.energy_types %></p>

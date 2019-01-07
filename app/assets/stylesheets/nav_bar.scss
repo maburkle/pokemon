@@ -1,0 +1,12 @@
+.navbar{
+	font-size: 20px;
+	background-color: $primary;
+	color: $white;
+	a {
+		color: $white;
+	}
+	li a:hover {
+		background-color: $primary;
+		color: $secondary
+	}
+}
