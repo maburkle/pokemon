@@ -14,7 +14,7 @@ module ApplicationHelper
 			types = cost.gsub("[\"", "").gsub("\"]","")
 			return image_tag(image_url("icons/#{types}.png"))
 		else
-			return image_tag(image_url("icons/None.png"))
+			return image_tag(image_url("icons/Pokeball.png"))
 		end
 	end
 
