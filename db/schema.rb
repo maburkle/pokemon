@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190106220035) do
+ActiveRecord::Schema.define(version: 20190108212053) do
 
   create_table "abilities", force: :cascade do |t|
     t.string "name"
@@ -61,6 +61,15 @@ ActiveRecord::Schema.define(version: 20190106220035) do
   create_table "series", force: :cascade do |t|
     t.string "name"
     t.string "logo_image_url"
+  end
+
+  create_table "user_cards", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "card_id"
+    t.integer "quantity"
+    t.integer "foil_quantity"
+    t.index ["card_id"], name: "index_user_cards_on_card_id"
+    t.index ["user_id"], name: "index_user_cards_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

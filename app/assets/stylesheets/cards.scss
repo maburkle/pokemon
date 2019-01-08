@@ -1,13 +1,16 @@
-.card_image_holder img {
-	height: auto;
-	width: 75%;
-	display: block;
-	margin: auto;
+.card_image_holder {
+	margin-top: 5px;
+	img {
+		height: auto;
+		width: 75%;
+		display: block;
+		margin: auto;
+	}
 }
 
 .card_title_holder {
 	border-radius: 10px;
-  background-color: $secondary;
+  background-color: $primary;
   margin-top: 5px;
 	text-align: center;
 	.card_title {
@@ -59,11 +62,16 @@
 	margin-top: 10px;
 }
 
-.attack_title_holder {
+.title_holder {
 	border-radius: 10px;
-  background-color: $primary;
   margin-top: 10px;
 	text-align: center;
+	&.attack {
+		background-color: $primary;
+	}
+	&.ability {
+		background-color: $secondary;
+	}
 }
 
 .attack_title {
@@ -71,7 +79,6 @@
 	margin-bottom: 0;
 	border-radius: 10px;
 	text-align: center;
-	background-color: $primary;
 	color: $white;
 	h2 {
 		margin: 0;

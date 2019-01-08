@@ -4,7 +4,7 @@
 	</div>
 	<div class="col-sm-6">
 		<div class="row">
-			<div class="col-9">
+			<div class="col-sm-9">
 				<div class="row card_title_holder">
 					<div class="col-10 card_title">
 						<h2><%= @card.name %></h2>
@@ -15,21 +15,25 @@
 				</div>
 
 				<% if @card.ability %>
-					<div class="row">
+					<div class="row ability title_holder">
 						<div class="col attack_title">
 							<h2><%= @card.ability.name %></h2>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col attack_content_holder">
-							<%= @card.ability.text %>
+							<div class="row">
+								<div class="col-12 attack_text">
+									<%= @card.ability.text %>
+								</div>
+							</div>
 						</div>
 					</div>
 				<% end %>
 
 				<% if @card.attacks.present? %>
 					<% @card.attacks.each do |attack| %>
-						<div class="row attack_title_holder">
+						<div class="row attack title_holder">
 							<div class="col attack_title">
 								<h2><%= attack.name %></h2>
 							</div>
@@ -51,7 +55,7 @@
 						</div>
 					<% end %>
 				<% else %>
-					<div class="row attack_title_holder">
+					<div class="row attack title_holder">
 						<div class="col attack_title">
 							<h2>Card Effect</h2>
 						</div>
@@ -62,10 +66,14 @@
 				<% end %>
 
 			</div>
-			<div class="col-2 offset-sm-1 set_icon">
+			<div class="col-sm-2 offset-sm-1 set_icon">
 				<div class="row">
 					<div class="col-12 card_header">Set</div>
 					<div class="col-12"><%= image_tag(image_url(@card.card_set.symbol_image_url))%></div>
+				</div>
+				<div class="row">
+					<div class="col-12 card_header">Card #</div>
+					<div class="col-12 card_data"><%= @card.card_number %> / <%= @card.card_set.total_cards %></div>
 				</div>
 				<% if @card.super_type != "Trainer" %>
 					<div class="row">
