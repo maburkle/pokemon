@@ -10,18 +10,27 @@ module ApplicationHelper
 	end
 
 	def to_icon(cost)
-		types = cost.gsub("[\"", "").gsub("\"]","")
-		return image_tag(image_url("icons/#{types}.png"))
+		if cost
+			types = cost.gsub("[\"", "").gsub("\"]","")
+			return image_tag(image_url("icons/#{types}.png"))
+		else
+			return image_tag(image_url("icons/None.png"))
+		end
 	end
 
-	def convert_retreat_cost(cost)
-		html_cost = "<p hidden>#{cost}</p>"
-		cost.times{ html_cost = html_cost + image_tag(image_url("icons/Colorless.png"))} unless (cost == 0 || cost == nil)
+	def convert_retreat_cost(cost, html_cost = "<p hidden>#{cost}</p>")
+		unless (cost == 0 || cost == nil)
+			cost.times{ html_cost = html_cost + image_tag(image_url("icons/Colorless.png"))}
+		else
+			html_cost = html_cost + image_tag(image_url("icons/None.png"))
+		end
 		return html_cost.html_safe
 	end
 
-	def sub_icons_with_text(cost, icon = "", amount = "", text_with_icons = "<phidden>A</p>")
-		if cost
+	def sub_icons_with_text(cost, icon = "", amount = "", text_with_icons = "")
+		if cost.empty?
+			text_with_icons = "<p hidden>A</p>" + image_tag(image_url("icons/None.png"))
+		else
 			types = cost.split
 			types.each do |cost|
 				if ENERGY_TYPES.include?(cost)
@@ -30,8 +39,8 @@ module ApplicationHelper
 					amount = cost
 				end
 			end
-			text_with_icons = "#{icon} #{amount}".html_safe
+			text_with_icons = "#{icon} #{amount}"
 		end
-		return text_with_icons
+		return text_with_icons.html_safe
 	end
 end

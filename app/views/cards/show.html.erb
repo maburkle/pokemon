@@ -27,7 +27,7 @@
 					</div>
 				<% end %>
 
-				<% if @card.attacks %>
+				<% if @card.attacks.present? %>
 					<% @card.attacks.each do |attack| %>
 						<div class="row attack_title_holder">
 							<div class="col attack_title">
@@ -50,6 +50,15 @@
 							<div class="col-12 attack_text"><%= attack.text %></div>
 						</div>
 					<% end %>
+				<% else %>
+					<div class="row attack_title_holder">
+						<div class="col attack_title">
+							<h2>Card Effect</h2>
+						</div>
+					</div>
+					<div class="row attack_content_holder">
+						<div class="col-12 attack_text"><%= @card.flavor_text.gsub("[", "").gsub('"', "").gsub("]","") %></div>
+					</div>
 				<% end %>
 
 			</div>
@@ -58,18 +67,24 @@
 					<div class="col-12 card_header">Set</div>
 					<div class="col-12"><%= image_tag(image_url(@card.card_set.symbol_image_url))%></div>
 				</div>
-				<div class="row">
-					<div class="col-12 card_header">HP</div>
-					<div class="col-12 card_data"><%= @card.hp %></div>
-				</div>
-				<div class="row">
-					<div class="col-12 card_header">Weak</div>
-					<div class="col-12 card_data with_icons"><%= sub_icons_with_text(@card.weakness) %></div>
-				</div>
-				<div class="row">
-					<div class="col-12 card_header">Resist</div>
-					<div class="col-12 card_data with_icons"><%= sub_icons_with_text(@card.resistance) %></div>
-				</div>
+				<% if @card.super_type != "Trainer" %>
+					<div class="row">
+						<div class="col-12 card_header">HP</div>
+						<div class="col-12 card_data"><%= @card.hp %></div>
+					</div>
+					<div class="row">
+						<div class="col-12 card_header">Weak</div>
+						<div class="col-12 card_data with_icons"><%= sub_icons_with_text(@card.weakness) %></div>
+					</div>
+					<div class="row">
+						<div class="col-12 card_header">Resist</div>
+						<div class="col-12 card_data with_icons"><%= sub_icons_with_text(@card.resistance) %></div>
+					</div>
+					<div class="row">
+						<div class="col-12 card_header">Retreat</div>
+						<div class="col-12 card_data with_icons"><%= convert_retreat_cost(@card.retreat_cost) %></div>
+					</div>
+				<% end %>
 			</div>
 		</div>
 	</div>
