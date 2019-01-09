@@ -1,0 +1,27 @@
+<div class="row ability title_holder">
+	<div class="col attack_title">
+		<h2>Collection</h2>
+	</div>
+</div>
+<%= form_for(@user_card) do |f| %>
+	<%= @user_card.inspect %>
+	<div class="row">
+		<div class="col attack_content_holder">
+			<div class="row">
+				<div class="col-3 card_header">
+					Normal
+				</div>
+				<div class="col-3 card_data">
+					<%= f.number_field(:quantity, options = { min: 0}) %>
+				</div>
+				<div class="col-3 card_header">
+					Foil
+				</div>
+				<div class="col-3 card_data">
+					<%= f.number_field(:foil_quantity, options = { min: 0}) %>
+				</div>
+			</div>
+			 <%= f.submit %>
+		</div>
+	</div>
+<% end %>

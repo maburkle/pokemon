@@ -61,11 +61,14 @@
 						</div>
 					</div>
 					<div class="row attack_content_holder">
-						<div class="col-12 attack_text"><%= @card.flavor_text.gsub("[", "").gsub('"', "").gsub("]","") %></div>
+						<div class="col attack_text"><%= @card.flavor_text.gsub("[", "").gsub('"', "").gsub("]","") %></div>
 					</div>
 				<% end %>
-
+				<% if current_user %>
+					<%= render partial: "collection_form", locals: {card: @card} %>
+				<% end %>
 			</div>
+
 			<div class="col-sm-2 offset-sm-1 set_icon">
 				<div class="row">
 					<div class="col-12 card_header">Set</div>
