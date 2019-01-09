@@ -3,8 +3,9 @@
 		<h2>Collection</h2>
 	</div>
 </div>
-<%= form_for(@user_card) do |f| %>
-	<%= @user_card.inspect %>
+<%= form_for user_card do |f| %>
+	<%= f.hidden_field :user_id, value: current_user.id %>
+	<%= f.hidden_field :card_id, value: @card.id %>
 	<div class="row">
 		<div class="col attack_content_holder">
 			<div class="row">

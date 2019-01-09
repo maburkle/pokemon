@@ -26,6 +26,6 @@ class Card < ActiveRecord::Base
 		else
   		value = 8
 		end
-		return "<p class='hidden'>#{value}</p> #{self.rarity}"
+		return "<p hidden>#{value}</p> #{self.rarity}"
 	end
 end

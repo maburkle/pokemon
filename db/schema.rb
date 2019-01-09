@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 20190108212053) do
     t.string "logo_image_url"
     t.integer "total_cards"
     t.string "set_api_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "cards", force: :cascade do |t|
@@ -56,6 +58,8 @@ ActiveRecord::Schema.define(version: 20190108212053) do
     t.string "weakness"
     t.string "resistance"
     t.string "api_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "series", force: :cascade do |t|
@@ -68,6 +72,8 @@ ActiveRecord::Schema.define(version: 20190108212053) do
     t.integer "card_id"
     t.integer "quantity"
     t.integer "foil_quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["card_id"], name: "index_user_cards_on_card_id"
     t.index ["user_id"], name: "index_user_cards_on_user_id"
   end

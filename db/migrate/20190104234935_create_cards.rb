@@ -19,6 +19,7 @@ class CreateCards < ActiveRecord::Migration[5.1]
     	t.string :weakness
     	t.string :resistance
     	t.string :api_id
+      t.timestamps
     end
     create_table :attacks do |t|
     	t.string :cost

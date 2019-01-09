@@ -6,4 +6,7 @@ Rails.application.routes.draw do
   resources :cards
   resources :card_sets
   resources :series
+  resources :users do
+  	get '/cards', :action => :cards
+  end
 end

@@ -18,6 +18,15 @@ module ApplicationHelper
 		end
 	end
 
+	def bad_string_to_regular(cost)
+		if cost
+			types = cost.gsub("[\"", "").gsub("\"]","")
+			return types
+		else
+			return "Pokeball"
+		end
+	end
+
 	def convert_retreat_cost(cost, html_cost = "<p hidden>#{cost}</p>")
 		unless (cost == 0 || cost == nil)
 			cost.times{ html_cost = html_cost + image_tag(image_url("icons/Colorless.png"))}

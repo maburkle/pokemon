@@ -5,6 +5,7 @@ class CreateUserCards < ActiveRecord::Migration[5.1]
     	t.belongs_to :card
     	t.integer    :quantity
     	t.integer    :foil_quantity
+    	t.timestamps
     end
   end
 end

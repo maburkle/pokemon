@@ -19,6 +19,42 @@
 	}
 	h2 {
 		margin-bottom: 5px;
+		background-repeat: no-repeat;
+		background-size: 25px;
+		background-position: left;
+		&.Grass {
+			background-image: url(/assets/icons/Grass.png);
+		}
+		&.Pokeball {
+			background-image: url(/assets/icons/Pokeball.png);
+		}
+		&.Fire {
+			background-image: url(/assets/icons/Fire.png);
+		}
+		&.Colorless {
+			background-image: url(/assets/icons/Colorless.png);
+		}
+		&.Darkness {
+			background-image: url(/assets/icons/Darkness.png);
+		}
+		&.Fariy {
+			background-image: url(/assets/icons/Fairy.png);
+		}
+		&.Fighting{
+			background-image: url(/assets/icons/Fighting.png);
+		}
+		&.Lightning{
+			background-image: url(/assets/icons/Lightning.png);
+		}
+		&.Metal{
+			background-image: url(/assets/icons/Metal.png);
+		}
+		&.Psychic{
+			background-image: url(/assets/icons/Psychic.png);
+		}
+		&.Water{
+			background-image: url(/assets/icons/Water.png);
+		}
 	}
 	.card_title_cost {
 		img {

@@ -1,0 +1,48 @@
+<table class=" table table-striped sortable">
+  <thead>
+    <tr>
+    	<th>Set</th>
+      <th>#</th>
+      <th>Energy</th>
+      <th>Name</th>
+      <th>Card Type</th>
+      <th>Card Sub-type</th>
+      <th>Owned</th>
+      <th>Foils</th>
+      <th>Rarity</th>
+    </tr>
+  </thead>
+
+ <tbody>
+   <% @collection.each do |user_card| %>
+     <tr data-toggle="modal" data-target="#myModal" data-title='<%= user_card.card.name %>' data-image='<%= link_to(user_card.card) do %><%= image_tag(user_card.card.hd_image_url) %><% end %>'>
+     	<td><%= image_tag(image_url(user_card.card.card_set.symbol_image_url))%></td>
+      <td><%= user_card.card.card_number %></td>
+      <td>
+      	<p hidden><%= user_card.card.energy_types %></p>
+      	<% if user_card.card.energy_types %>
+      		<%= to_icon(user_card.card.energy_types).html_safe %>
+      	<% end %>
+      </td>
+      <td><%= user_card.card.name %></td>
+      <td><%= user_card.card.super_type %></td>
+      <td><%= user_card.card.sub_type %></td>
+      <td><%= user_card.quantity %></td>
+      <td><%= user_card.foil_quantity %></td>
+      <td><%= user_card.card.rarity_weight.html_safe %></td>
+    </tr>
+   <% end %>
+ </tbody>
+</table>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="width: 375px">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 class="modal-title" id="myModalLabel"></h4>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
