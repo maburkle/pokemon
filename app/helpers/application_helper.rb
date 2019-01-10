@@ -11,8 +11,7 @@ module ApplicationHelper
 
 	def to_icon(cost)
 		if cost
-			types = cost.gsub("[\"", "").gsub("\"]","")
-			return image_tag(image_url("icons/#{types}.png"))
+			return image_tag(image_url("icons/#{cost}.png"))
 		else
 			return image_tag(image_url("icons/Pokeball.png"))
 		end
@@ -20,8 +19,7 @@ module ApplicationHelper
 
 	def bad_string_to_regular(cost)
 		if cost
-			types = cost.gsub("[\"", "").gsub("\"]","")
-			return types
+			return cost
 		else
 			return "Pokeball"
 		end
@@ -31,14 +29,14 @@ module ApplicationHelper
 		unless (cost == 0 || cost == nil)
 			cost.times{ html_cost = html_cost + image_tag(image_url("icons/Colorless.png"))}
 		else
-			html_cost = html_cost + image_tag(image_url("icons/None.png"))
+			
 		end
 		return html_cost.html_safe
 	end
 
 	def sub_icons_with_text(cost, icon = "", amount = "", text_with_icons = "")
 		if cost.empty?
-			text_with_icons = "<p hidden>A</p>" + image_tag(image_url("icons/None.png"))
+			text_with_icons = "<p hidden>A</p>"
 		else
 			types = cost.split
 			types.each do |cost|
