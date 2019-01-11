@@ -1,20 +1,20 @@
 <table class=" table table-striped sortable">
   <thead>
     <tr>
-      <th>Card Number</th>
-      <th>Energy Type</th>
+      <th>#</th>
+      <th>Energy</th>
       <th>Name</th>
-      <th>Card Type</th>
-      <th>Card Sub-type</th>
+      <th>Type</th>
+      <th>Sub-type</th>
       <th>HP</th>
-      <th>Weakness Cost</th>
-      <th>Resistance Cost</th>
-      <th>Retreat Cost</th>
+      <th>Weakness</th>
+      <th>Resistance</th>
+      <th>Retreat</th>
       <th>Rarity</th>
     </tr>
   </thead>
 
- <tbody>
+ <tbody class="card_table">
    <% @cards.each do |card| %>
      <tr data-toggle="modal" data-target="#myModal" data-title='<%= card.name %>' data-image='<%= link_to(card) do %><%= image_tag(card.hd_image_url) %><% end %>'>
       <td><%= card.card_number %></td>

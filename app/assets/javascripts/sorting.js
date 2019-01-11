@@ -1,3 +1,8 @@
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+  }
+});
 $(document).ready(function(){
   (function vendorTableSorter(){ 
     /*
@@ -499,5 +504,33 @@ var forEach = function(object, block, context) {
 $('#myModal').on('show.bs.modal', function (e) {
   $('#myModal .modal-title')[0].innerHTML = e.relatedTarget.dataset.title;
   $('#myModal .modal-body')[0].innerHTML = e.relatedTarget.dataset.image;
-})
+});
+
+  $('.minus').on('click', function() {
+    var self = $(this);
+    var input_field = self.next('input');
+    var id = $(input_field)[0].dataset.userCardId;
+    input_field.val((function(i, value) { return --value }));
+    var quantity = input_field.val();
+      $.ajax({
+        type: 'PUT',
+        url: '/user_cards/' + id,
+        headers: {
+          Accept : "charset=utf-8",
+          "Content-Type": 'application/x-www-form-urlencoded; charset=UTF-8'
+        },
+        dataType: 'html',
+        data: {
+          user_card: {quantity: quantity}
+        },
+        success: function() {
+
+        }
+      });
+    }
+  );
+
+  $('.plus').on('click', function() {
+    $(this).prev('input').val((function(i, value) { return  ++value }));
+  });
 });

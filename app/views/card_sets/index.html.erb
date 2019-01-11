@@ -1,27 +1,36 @@
 <div class="row" id="accordion">
 	<% @series.each do |series| %>
-	<div class="col-xs-12">
-		<a data-toggle="collapse" data-parent="#accordion" href=<%= "#collapse#{series.id}" %>>
-    	<%= image_tag(image_url(series.logo_image_url),  class:"img-responsive") %> <%=  series.name %>
-  	</a>
-			<div class="row panel-collapse collapse" id=<%= "collapse#{series.id}" %>>
-				<% series.card_sets.each do |card_set| %>
-					<%= link_to(card_set) do %>
-						<div class="col-xs-12 col-sm-3">
-							<h2><%= card_set.name %></h2>
-							<div class="row"></div>
-								<div class="col-xs-12">
-									<%= image_tag(image_url(card_set.logo_image_url),  class:"img-responsive") %>
+		<div class="col-12">
+			<button class="btn" type="button" data-toggle="collapse" data-target="#collapse-<%= series.id %>" aria-expanded="false" aria-controls="collapse-<%= series.id %>">
+    		<%= image_tag(image_url(series.logo_image_url),  class:"img-responsive") %> <%=  series.name %>
+  		</button>
+  	</div>
+		<div class="collapse" id="collapse-<%= series.id %>">
+			<div class="row">
+			  <% series.card_sets.each do |card_set| %>
+					<div class="col-3">
+						<%= link_to(card_set) do %>
+							<div class="row">
+								<div class="col-12 set_name_holder">
+									<h4>
+										<%= card_set.name %>
+									</h4>
 								</div>
-								<div class="col-xs-6">
-									<%= image_tag(image_url(card_set.symbol_image_url),  class:"img-responsive") %>
+							</div>
+							<div class="row card_set_data">
+								<div class="col-12">
+									<%= image_tag(image_url(card_set.logo_image_url),  class:"img-fluid") %>
 								</div>
-								<div class="col-xs-6">
+								<div class="col-6">
+									<%= image_tag(image_url(card_set.symbol_image_url),  class:"symbol_image") %>
+								</div>
+								<div class="col-6">
 									<%= card_set.release_date %><br>
 									<%= card_set.total_cards %>
 								</div>
-						</div>
-					<% end %>
+							</div>
+						<% end %>
+					</div>
 				<% end %>
 			</div>
 		</div>

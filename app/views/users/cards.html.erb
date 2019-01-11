@@ -8,14 +8,14 @@
       <th>Card Type</th>
       <th>Card Sub-type</th>
       <th>Owned</th>
-      <th>Foils</th>
-      <th>Rarity</th>
+      <th style="width: 10%;">Foils</th>
+      <th style="width: 10%;">Rarity</th>
     </tr>
   </thead>
 
  <tbody>
    <% @collection.each do |user_card| %>
-     <tr data-toggle="modal" data-target="#myModal" data-title='<%= user_card.card.name %>' data-image='<%= link_to(user_card.card) do %><%= image_tag(user_card.card.hd_image_url) %><% end %>'>
+     <tr>
      	<td><%= image_tag(image_url(user_card.card.card_set.symbol_image_url))%></td>
       <td><%= user_card.card.card_number %></td>
       <td>
@@ -24,11 +24,20 @@
       		<%= to_icon(user_card.card.energy_types).html_safe %>
       	<% end %>
       </td>
-      <td><%= user_card.card.name %></td>
+      <td data-toggle="modal" data-target="#myModal" data-title='<%= user_card.card.name %>' data-image='<%= link_to(user_card.card) do %><%= image_tag(user_card.card.hd_image_url) %><% end %>'><%= user_card.card.name %></td>
       <td><%= user_card.card.super_type %></td>
       <td><%= user_card.card.sub_type %></td>
-      <td><%= user_card.quantity %></td>
-      <td><%= user_card.foil_quantity %></td>
+      <td sorttable_customkey="<%= user_card.quantity %>">
+        <button class="minus number-button">-</button>
+          <%= number_field_tag 'user_card[quantity]', user_card.quantity, data: {user_card_id: user_card.id } %>
+        <button class="plus number-button">+</button>
+      </td>
+      <td sorttable_customkey="<%= user_card.foil_quantity %>">
+        <p hidden><%= user_card.foil_quantity%></p>
+        <button class="minus number-button">-</button>
+          <%= number_field_tag 'user_card[foil_quantity]', user_card.foil_quantity, data: {user_card_id: user_card.id } %>
+        <button class="plus number-button">+</button>
+      </td>
       <td><%= user_card.card.rarity_weight.html_safe %></td>
     </tr>
    <% end %>

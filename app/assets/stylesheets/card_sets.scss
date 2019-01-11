@@ -4,3 +4,79 @@
 	display:block;
 	margin:auto;
 }
+
+.card_table {
+	img {
+		width: 25px;
+		height: 25px;
+	}
+}
+
+.btn {
+	img {
+		height: auto;
+		max-width: 250px;
+		display:block;
+		float: left;
+	}
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+.symbol_image {
+	width: 40px;
+	height: auto;
+}
+
+.set_name_holder {
+  margin-top: 5px;
+	text-align: center;
+	h4 {
+		background-color: $primary;
+		text-decoration: none;
+		color: $white;
+		border-radius: 10px;
+	}
+}
+
+.card_set_data {
+	img {
+		margin: auto;
+    display: block;
+	}
+}
+
+.table-striped tbody {
+	color: $white;
+	border-radius: 10px;
+	input {
+		width: 30px;
+	}
+	img {
+		width: 25px;
+	}
+	tr:nth-of-type(even) {
+		background-color: $secondary;
+		border-color: $secondary;
+		button {
+			background-color: $secondary;
+			color: $white;
+			border: none;
+		}
+	}
+	tr:nth-of-type(odd) {
+		background-color: $primary;
+		border-color: $primary;
+		button {
+			background-color: $primary;
+			color: $white;
+			border: none;
+		}
+	}
+}

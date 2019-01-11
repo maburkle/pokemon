@@ -5,7 +5,6 @@ class UserCardsController < ApplicationController
 	end
 
 	def show
-
 	end
 
 	def new
@@ -17,7 +16,8 @@ class UserCardsController < ApplicationController
 	end
 
 	def update
-
+		user_card = UserCard.find(params[:id])
+		user_card.update_attributes(quantity: params[:user_card][:quantity])
 	end
 
 	private
